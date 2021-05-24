@@ -12,22 +12,21 @@ jobs:
     steps:
     - run:
         name: Print Hello
-        command: echo "Hello"
+        command: echo "Hello World" > /tmp/test/output.txt
+    - persist_to_workspace:
+        root: /tmp/test/
+        paths:
+          - ./*
   print_world:
     docker:
     - image: circleci/node:13.8.0
     steps:
     - run:
         name: Print World
-        command: echo "World"
-  print_name:
-    docker:
-    - image: circleci/node:13.8.0
-    steps:
-    - checkout
-    - run:
-        name: "Print my name"
-        command: echo $MyName
+        command: cat /tmp/test/output.txt
+    - attach_workspace:
+        at: /tmp/test/
+
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -38,4 +37,3 @@ workflows:
       - print_world:
           requires:
             - print_hello
-      - print_name
