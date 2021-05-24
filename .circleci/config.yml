@@ -12,9 +12,9 @@ jobs:
     steps:
     - run:
         name: Print Hello
-        command: echo "Hello World" > /tmp/test/output.txt
+        command: echo "Hello World" > output.txt
     - persist_to_workspace:
-        root: /tmp/test/
+        root: ./
         paths:
           - ./*
   print_world:
@@ -23,9 +23,9 @@ jobs:
     steps:
     - run:
         name: Print World
-        command: cat /tmp/test/output.txt
+        command: cat output.txt
     - attach_workspace:
-        at: /tmp/test/
+        at: ./
 
 workflows:
   # Name the workflow "welcome"
