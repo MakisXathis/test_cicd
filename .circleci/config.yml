@@ -24,9 +24,10 @@ jobs:
     docker:
     - image: circleci/node:13.8.0
     steps:
+    - checkout
     - run:
         name: "Print my name"
-        command: echo "$MyName"
+        command: echo $MyName
 workflows:
   # Name the workflow "welcome"
   welcome:
