@@ -37,7 +37,14 @@ jobs:
     - image: cimg/base:2021.04
     steps:
       - print_pipeline_id
-
+  failure_job:
+    docker:
+    - image: circleci/node:13.8.0
+    steps:
+      - run: return 1
+      - run: 
+         command: echo "it failed"
+         when: on_fail
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -49,3 +56,4 @@ workflows:
           requires:
             - print_hello
       - print_pipelineid
+      - failure_job
