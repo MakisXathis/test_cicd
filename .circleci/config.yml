@@ -14,7 +14,7 @@ orbs:
 jobs:
   aws_setup:
     docker:
-    - image: circleci/aws-cli
+    - image: amazon/aws-cli
     steps:
     - checkout
     - run:
