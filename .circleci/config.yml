@@ -20,8 +20,7 @@ jobs:
     - run:
         name: Ensure backend infrastucture exists
         command: |
-          ls -l
-          aws cloudformation deploy  --template-file=template.yml --stack-name test-stack
+          aws cloudformation deploy  --template-file .circleci/template.yml --stack-name test-stack
     environment:
       AWS_ACCESS_KEY_ID: AKIAYM5JWN2XUR2OJK2B
       AWS_SECRET_ACCESS_KEY: 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
