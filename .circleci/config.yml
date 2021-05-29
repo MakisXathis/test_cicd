@@ -12,6 +12,19 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 jobs:
+  aws_setup:
+    docker:
+    - image: circleci/aws-cli
+    steps:
+    - checkout
+    - run:
+        name: Ensure backend infrastucture exists
+        command: |
+          aws cloudformation deploy  --template-file template.yml --stack-name test-stack
+    environment:
+      AWS_ACCESS_KEY_ID: AKIAYM5JWN2XUR2OJK2B
+      AWS_SECRET_ACCESS_KEY: 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
+      AWS_DEFAULT_REGION: us-east-1
   print_hello:
     docker:
     - image: circleci/node:13.8.0
@@ -56,4 +69,5 @@ workflows:
           requires:
             - print_hello
       - print_pipelineid
+      - aws_setup
       - failure_job
