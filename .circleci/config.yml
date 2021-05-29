@@ -20,6 +20,7 @@ jobs:
     - run:
         name: Ensure backend infrastucture exists
         command: |
+          ls -l
           aws cloudformation deploy  --template-file=template.yml --stack-name test-stack
     environment:
       AWS_ACCESS_KEY_ID: AKIAYM5JWN2XUR2OJK2B
