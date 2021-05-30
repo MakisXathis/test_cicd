@@ -3,4 +3,4 @@
 
 [ec2:vars]
 host_key_checking=False
-ansible_connection=ssh
+ansible_ssh_common_args="vvv"
