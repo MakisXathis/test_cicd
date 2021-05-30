@@ -5,6 +5,12 @@ commands:
     steps:
       - run:
           command: echo << pipeline.id >>
+  destroy_infrastucture:
+    steps:
+      - run:
+          command: |
+            aws cloudformation delete-stack --stack-name test-stack
+          when: on_fail
 
 # Use a package of configuration called an orb.
 orbs:
@@ -21,6 +27,7 @@ jobs:
         name: Ensure backend infrastucture exists
         command: |
           aws cloudformation deploy  --template-file .circleci/template.yml --stack-name test-stack
+    - destroy_infrastucture
     environment:
       AWS_ACCESS_KEY_ID: AKIAYM5JWN2XUR2OJK2B
       AWS_SECRET_ACCESS_KEY: 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
