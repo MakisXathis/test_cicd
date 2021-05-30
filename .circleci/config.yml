@@ -19,6 +19,7 @@ jobs:
               echo "It worked!"
             else
               echo "It failed"
+              return 1
             fi
 # Orchestrate or schedule a set of jobs
 workflows:
