@@ -1,7 +1,6 @@
 ---
 - name: "hello world webpage"
   hosts: all
-  gather_facts: False
   roles:
     - prepare
     - apache
