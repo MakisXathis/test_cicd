@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Curling website
           command: |
-          apt install curl
+            apt install curl
             if curl -s --head "https://google.com" 
             then
               echo "It worked!"
