@@ -2,4 +2,4 @@
 54.237.91.215
 
 [ec2:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+host_key_checking = False
