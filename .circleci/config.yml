@@ -2,28 +2,25 @@
 version: 2.1
 # Use a package of configuration called an orb.
 jobs:
-  configure_infrastructure:
+  test_website:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: alpine:latest
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints: [4c:f9:a5:74:c6:e3:e8:e2:b2:23:70:d3:04:f1:81:1f]
       - run:
-          name: Install dependencies
+          name: Curling website
           command: |
-            apk add --update ansible
-      - run:
-          name: Configure Server
-          command: |
-            pwd
-            ls -l
-            export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory.txt playbook.yml
+          apt install curl
+            if curl -s --head "https://google.com" 
+            then
+              echo "It worked!"
+            else
+              echo "It failed"
+            fi
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
-  welcome:
+  smoke_test:
     # Run the welcome/run job in its own container
     jobs:
-      - configure_infrastructure
+      - test_website
