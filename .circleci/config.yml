@@ -16,6 +16,8 @@ jobs:
       - run:
           name: Configure Server
           command: |
+            pwd
+            ls -l
             ansible-playbook -i inventory.txt playbook.yml
 # Orchestrate or schedule a set of jobs
 workflows:
