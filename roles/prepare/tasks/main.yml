@@ -6,8 +6,8 @@
     name: ["apache2"]
     state: latest
     update_cache: yes
- 
-- name: "install index page"
+
+- name: "copying index.html"
   copy:
     src: index.html
     dest: /var/www/html/index.html
